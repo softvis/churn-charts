@@ -1,0 +1,10 @@
+
+<script src="matrix.js"></script>
+<script>
+	redraw = function(error, data) {
+		COT.matrix(data)
+	}
+	$(document).ready(d3.json("data.js", redraw));
+</script>
+  
+<div id="chart-wrapper">
