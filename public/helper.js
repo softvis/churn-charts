@@ -1,7 +1,7 @@
 
 ChurnCharts = {}
 
-var tooltip = function(a) {
+ChurnCharts.tooltip = function(a) {
 	
 	var accessor = arguments.length ? a : undefined;
 	

@@ -30,7 +30,6 @@ ChurnCharts.timeline = function(data) {
     
 	var fscale = d3.scale.linear()
     .domain([0, 10])
-//    .domain([0, d3.max(data, function(d) { return (d.size > 0) ? (d.churnA / d.size) : 0})])
 		.range(["#46F", "#F64"]);
 		
   var hscale = d3.scale.linear()
@@ -57,7 +56,7 @@ ChurnCharts.timeline = function(data) {
 		.attr("height", function(d) { return hscale(d.churn) })
 		.attr("shape-rendering", "crispEdges")
 		.style("fill", function(d) { return fscale(d.churnA/d.size) })
-    .call(tooltip());
+    .call(ChurnCharts.tooltip());
 		    		
 }
 
