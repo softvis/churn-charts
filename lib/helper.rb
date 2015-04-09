@@ -22,10 +22,12 @@ module Helper
           oldname = (match[1] + match[2] + match[4]).gsub(/\/+/, "/")
           filename = (match[1] + match[3] + match[4]).gsub(/\/+/, "/")
           filetable[filename] = filetable.delete(oldname)
+          puts "#{day}: #{oldname} => #{filename}"
         elsif match = filename.match(/(.*) =\> (.*)/)
           oldname = match[1]
           filename = match[2]
           filetable[filename] = filetable.delete(oldname)
+          puts "#{day}: #{oldname} => #{filename}"
         end  
 
         # filename = filename.split(/\//)[0...-1].join("/")

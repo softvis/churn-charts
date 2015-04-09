@@ -1,8 +1,9 @@
+<h1>Churn over time</h1>
 
-<script src="matrix.js"></script>
+<script src="timeline.js"></script>
 <script>
 	redraw = function(error, data) {
-		COT.matrix(data)
+		ChurnCharts.timeline(data)
 	}
 	$(document).ready(d3.json("data.js", redraw));
 </script>

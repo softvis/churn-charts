@@ -11,8 +11,8 @@ get '/' do
   erb :index
 end
 
-get '/matrix' do
-  erb :matrix
+get '/timeline' do
+  erb :timeline
 end
 
 get '/data.js' do

@@ -1,12 +1,12 @@
 
-COT.matrix = function(data) {
+ChurnCharts.timeline = function(data) {
 
   var dateMin = d3.min(data, function(d) { return new Date(d.date)});
   var dateMax = d3.max(data, function(d) { return new Date(d.date)});
   var numFiles = d3.max(data, function(d) { return d.findex });
 
-  var MINWH = 2;
-	var MAXWH = 6;
+  var MINWH = 3;
+	var MAXWH = 8;
   var OVERSIZEH = 4;
   var PADDINGH = 0;
   var PADDINGV = 4;
@@ -29,7 +29,8 @@ COT.matrix = function(data) {
 		.rangeRound([MAXWH, CHEIGHT - MAXWH]);
     
 	var fscale = d3.scale.linear()
-    .domain([0, d3.max(data, function(d) { return d.churnA }) / 2])
+    .domain([0, 10])
+//    .domain([0, d3.max(data, function(d) { return (d.size > 0) ? (d.churnA / d.size) : 0})])
 		.range(["#46F", "#F64"]);
 		
   var hscale = d3.scale.linear()
@@ -55,7 +56,7 @@ COT.matrix = function(data) {
 		.attr("width", MAXWH)
 		.attr("height", function(d) { return hscale(d.churn) })
 		.attr("shape-rendering", "crispEdges")
-		.style("fill", function(d) { return fscale(d.churnA) })
+		.style("fill", function(d) { return fscale(d.churnA/d.size) })
     .call(tooltip());
 		    		
 }

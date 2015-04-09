@@ -1,5 +1,5 @@
 
-COT = {}
+ChurnCharts = {}
 
 var tooltip = function(a) {
 	
