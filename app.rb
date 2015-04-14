@@ -17,10 +17,10 @@ end
 
 get '/data/timeline.json' do
   content_type :json
-  flatten_entries(aggregate_churn(read_log())).to_json
+  flatten_entries(churn_by_file_by_day()).to_json
 end
 
 get '/data/histogram.json' do
   content_type :json
-  read_log2().to_json
+  churn_by_file().to_json
 end
