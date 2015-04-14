@@ -2,7 +2,7 @@
 ChurnCharts.histogram = function(data) {
 
 	var CHEIGHT = 600;
-	var BWIDTH = 2;
+	var BWIDTH = 3;
 	var BGAP = 1;
 	var LEFTSPACE = 40;
 

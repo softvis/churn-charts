@@ -16,7 +16,7 @@ ChurnCharts.tooltip = function(a) {
 				 	div = d3.select("body").append("div").attr("class", "tooltip").style("opacity", 0);
 				}
 			  div.html("");
-				div.append("h2").text(d.name);
+        div.append("h2").text(d.fname.split("/").slice(-1)[0]);
 				div.append("p").attr("class", "filename").text(d.fname);
 				for (var p in d) {
 				  if (d.hasOwnProperty(p) && (p != "fname")) {
