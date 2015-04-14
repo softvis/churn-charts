@@ -2,8 +2,8 @@
 ChurnCharts.histogram = function(data) {
 
 	var CHEIGHT = 600;
-	var BWIDTH = 5;
-	var BGAP = 2;
+	var BWIDTH = 2;
+	var BGAP = 1;
 	var LEFTSPACE = 40;
 
 	data.sort(function(da, db) { return db.count - da.count } )
