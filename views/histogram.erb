@@ -1,0 +1,11 @@
+<h1>Commit count histogram</h1>
+
+<script src="histogram.js"></script>
+<script>
+	redraw = function(error, data) {
+		ChurnCharts.histogram(data)
+	}
+	$(document).ready(d3.json("data/histogram.json", redraw));
+</script>
+  
+<div id="chart-wrapper">

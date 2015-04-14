@@ -1,7 +1,7 @@
 module Helper
 
   def read_log()
-    filetable = {}
+    filetable = {} # fname => { day => { fname, churn }}
  
     log_output = File.open('gitlog.txt', 'rb') { |f| f.read }
     log_lines = log_output.each_line.reject{ |line| line == "\n" }.map(&:chomp)
@@ -73,6 +73,23 @@ module Helper
     end
     data
   end  
+  
+  def aggregate_by_file(filetable)
+    data = []
+    filetable.each do | fname, entries |
+      count = churn = 0
+      entries.values.each do | entry |
+        count += 1
+        churn += entry[:churn] 
+      end
+      data << {
+        :fname => fname,
+        :count => count,
+        :churn => churn
+      }
+    end
+    data
+  end
   
 end
 

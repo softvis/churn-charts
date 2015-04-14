@@ -5,7 +5,7 @@
 	redraw = function(error, data) {
 		ChurnCharts.timeline(data)
 	}
-	$(document).ready(d3.json("data.js", redraw));
+	$(document).ready(d3.json("data/timeline.json", redraw));
 </script>
   
 <div id="chart-wrapper">
