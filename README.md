@@ -3,7 +3,6 @@
 Visualisations to analyse code churn based on Git logs
 
 
-
 ## Timeline
 
 ![Churn timeline image](docs/example-timeline.png)  
@@ -14,6 +13,16 @@ The more lines of code added and/or deleted the higher the bar for that day. The
 
 More information is available by hovering over the idividual boxes. The filename shown is the name of the file on that day. It can change over time when the file gets renamed.
 
+
+## Histogram
+
+![Churn histogram](docs/example-histogram.png)
+
+Histogram for the number of commits per file, sorted, from left to right, by number of commits.
+
+The colour of the bar changes from blue to red based on how much churn, in terms of lines added/deleted, there was for that file.
+
+Michael Feathers describes this chart in his article [Getting Empirical about Refactoring](http://www.stickyminds.com/article/getting-empirical-about-refactoring)
 
 
 ## Running the visualisations
