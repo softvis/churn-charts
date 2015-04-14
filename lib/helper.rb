@@ -1,3 +1,5 @@
+require 'securerandom'
+
 
 module Helper
 
@@ -90,6 +92,70 @@ module Helper
       entry[:churn] += adds.to_i + deletes.to_i
     end
     table.values
+  end
+  
+  
+  def read_log2()
+    cocommits = {}
+    id_map = {}
+    reverse_map = {} 
+ 
+    log_output = File.open('gitlog.txt', 'rb') { |f| f.read }
+    log_lines = log_output.each_line.reject{ |line| line == "\n" }.map(&:chomp)
+
+    group = []
+    log_lines.each do |line|
+      if line =~ /^--/ then
+        group = []
+      else
+        adds, deletes, filename = line.split(/\t/)
+        
+        next if ! (filename =~ /app/)
+        next if ! (filename =~ /(scala|rb|sh|json|java)(}*)$/)
+        next if filename =~ /lambda/
+
+        if match = filename.match(/(.*){(.*) =\> (.*)}(.*)/)
+          oldname = (match[1] + match[2] + match[4]).gsub(/\/+/, "/")
+          filename = (match[1] + match[3] + match[4]).gsub(/\/+/, "/")
+          id_map[filename] = id_map[oldname] 
+        elsif match = filename.match(/(.*) =\> (.*)/)
+          oldname = match[1]
+          filename = match[2]
+          id_map[filename] = id_map[oldname] 
+        end  
+
+        this_id = id_map[filename] ||= SecureRandom.hex(16)
+        reverse_map[this_id] = filename
+ 
+        group.each do | other |
+          key = [this_id, id_map[other]].sort.join("*")
+          cocommits[key] = (cocommits[key] || 0) + 1
+        end
+
+        group << filename
+        
+      end
+    end
+    
+    index_map = {}
+    reverse_map.values.sort.each_with_index do | fname, findex |
+      index_map[fname] = findex
+    end
+        
+    data = []
+    reverse_map.values.sort.combination(2).each do | pair|
+      key = [id_map[pair[0]], id_map[pair[1]]].sort.join("*")
+      if (weight = cocommits[key]) != nil then
+        data << {
+          :name0 => pair[0],
+          :name1 => pair[1],
+          :index0 => index_map[pair[0]],
+          :index1 => index_map[pair[1]],
+          :weight => weight
+        }
+      end
+    end  
+    data
   end
   
 end

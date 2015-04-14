@@ -15,7 +15,7 @@ h1 {
 
 .chart rect {
   stroke: black;
-  stroke-width: 0.0px;
+  stroke-width: 0.5px;
 }
 
 .axis path {

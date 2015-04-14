@@ -24,3 +24,8 @@ get '/data/histogram.json' do
   content_type :json
   churn_by_file().to_json
 end
+
+get '/data/matrix.json' do
+  content_type :json
+  read_log2().to_json
+end
