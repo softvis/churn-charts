@@ -74,21 +74,47 @@ module Helper
     data
   end  
   
-  def aggregate_by_file(filetable)
-    data = []
-    filetable.each do | fname, entries |
-      count = churn = 0
-      entries.values.each do | entry |
-        count += 1
-        churn += entry[:churn] 
+  def read_log2()
+    filetable = {} # fname => { fname, count, churn }
+ 
+    log_output = File.open('gitlog.txt', 'rb') { |f| f.read }
+    log_lines = log_output.each_line.reject{ |line| line == "\n" }.map(&:chomp)
+
+    day = nil
+    log_lines.each do |line|
+      if line =~ /^--/ then
+        unixtime = line.split(/--/)[1]
+        day = DateTime.strptime(unixtime,'%s').strftime("%Y-%m-%d")
+      else
+        adds, deletes, filename = line.split(/\t/)
+        
+        # next if ! (filename =~ /app/)
+        next if ! (filename =~ /(scala|rb|sh|json|java)(}*)$/)
+        next if filename =~ /lambda/
+
+        if match = filename.match(/(.*){(.*) =\> (.*)}(.*)/)
+          oldname = (match[1] + match[2] + match[4]).gsub(/\/+/, "/")
+          filename = (match[1] + match[3] + match[4]).gsub(/\/+/, "/")
+          filetable[filename] = filetable.delete(oldname)
+        elsif match = filename.match(/(.*) =\> (.*)/)
+          oldname = match[1]
+          filename = match[2]
+          filetable[filename] = filetable.delete(oldname)
+        end  
+
+        # filename = filename.split(/\//)[0...-1].join("/")
+        entry = filetable[filename] ||= { 
+          :count => 0, 
+          :churn => 0
+        }
+        entry[:fname] = filename
+        entry[:count] += 1
+        entry[:churn] += adds.to_i + deletes.to_i
+        
       end
-      data << {
-        :fname => fname,
-        :count => count,
-        :churn => churn
-      }
     end
-    data
+    
+    filetable.values
   end
   
 end

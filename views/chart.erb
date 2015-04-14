@@ -1,0 +1,11 @@
+<h1><%= name %></h1>
+
+<script src="/<%= name %>.js"></script>
+<script>
+	redraw = function(error, data) {
+		ChurnCharts.<%= name %>(data)
+	}
+	$(document).ready(d3.json("/data/<%= name %>.json", redraw));
+</script>
+  
+<div id="chart-wrapper">

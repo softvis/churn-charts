@@ -11,12 +11,8 @@ get '/' do
   erb :index
 end
 
-get '/timeline' do
-  erb :timeline
-end
-
-get '/histogram' do
-  erb :histogram
+get '/chart/:name' do
+  erb :chart, :locals => {:name => params[:name]}
 end
 
 get '/data/timeline.json' do
@@ -26,5 +22,5 @@ end
 
 get '/data/histogram.json' do
   content_type :json
-  aggregate_by_file(read_log()).to_json
+  read_log2().to_json
 end
