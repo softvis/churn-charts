@@ -8,6 +8,17 @@ h1 {
 	margin: 0.3em 0;
 }
 
+.formlabel {
+	vertical-align: baseline;
+	border-left: 2px solid #CCC;
+	margin: 0 0.3em 0 0.4em;
+	padding-left: 0.5em;
+}
+
+form {
+	margin-bottom: 1em;
+}
+
 #chart-wrapper {
 	width: 100%;
 	overflow-x: auto;
@@ -15,7 +26,7 @@ h1 {
 
 .chart rect {
   stroke: black;
-  stroke-width: 0.5px;
+  stroke-width: 0.0px;
 }
 
 .axis path {

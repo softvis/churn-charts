@@ -16,9 +16,9 @@ module Helper
       else
         adds, deletes, filename = line.split(/\t/)
         
-        # next if ! (filename =~ /app/)
         next if ! (filename =~ /(scala|rb|sh|json|java)(}*)$/)
         next if filename =~ /lambda/
+        next if filename =~ /generated/
 
         if match = filename.match(/(.*){(.*) =\> (.*)}(.*)/)
           oldname = (match[1] + match[2] + match[4]).gsub(/\/+/, "/")
@@ -110,9 +110,10 @@ module Helper
       else
         adds, deletes, filename = line.split(/\t/)
         
-        next if ! (filename =~ /app/)
+        # next if ! (filename =~ /app/)
         next if ! (filename =~ /(scala|rb|sh|json|java)(}*)$/)
         next if filename =~ /lambda/
+        next if filename =~ /generated/
 
         if match = filename.match(/(.*){(.*) =\> (.*)}(.*)/)
           oldname = (match[1] + match[2] + match[4]).gsub(/\/+/, "/")

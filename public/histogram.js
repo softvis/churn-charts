@@ -1,9 +1,8 @@
 
-ChurnCharts.histogram = function(data) {
+ChurnCharts.histogram = function(data, BWIDTH) {
 
 	var CHEIGHT = 600;
-	var BWIDTH = 3;
-	var BGAP = 1;
+	var BGAP = BWIDTH < 3 ? 0 : 1;
 	var LEFTSPACE = 40;
 
 	data.sort(function(da, db) { return db.count - da.count } )

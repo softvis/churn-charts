@@ -1,11 +1,11 @@
 
-ChurnCharts.matrix = function(data) {
+ChurnCharts.matrix = function(data, size, spacing) {
 
   var numFiles = d3.max(data, function(d) { return d.index0 > d.index1 ? d.index0 : d.index1 });
 
-  var BSIZE = 6;
-	var CHEIGHT = BSIZE * numFiles;
-	var CWIDTH = BSIZE * numFiles;
+  var BSIZE = size;
+	var CHEIGHT = spacing * numFiles;
+	var CWIDTH = spacing * numFiles;
 
 	d3.selectAll("svg").remove();
 	var chart = d3.select("#chart-wrapper").append("svg")

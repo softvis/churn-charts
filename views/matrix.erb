@@ -1,9 +1,31 @@
 <h1>Commit Matrix</h1>
 
+<form method="get" action="#">
+  <span class="formlabel">spacing: </span>
+  <select id="sel-spacing" onclick="redraw()">
+    <% [1, 2, 3, 4, 6, 8, 10].each do |w| %>
+      <option value="<%= w %>" <%= (w==3) ? "selected" : "" %>><%= w %> px</option>
+    <% end %>
+  </select>
+  <span class="formlabel">size: </span>
+  <select id="sel-size" onclick="redraw()">
+    <% [1, 2, 3, 4, 6, 8, 10].each do |w| %>
+      <option value="<%= w %>" <%= (w==3) ? "selected" : "" %>><%= w %> px</option>
+    <% end %>
+  </select>
+</form>
+
+<br>
+<hr>
+
 <script src="/matrix.js"></script>
 <script>
-	redraw = function(error, data) {
-		ChurnCharts.matrix(data)
+  var data;
+  redraw = function(error, newData) {
+    data = newData || data
+    var spacing = parseInt($('#sel-spacing').find(":selected").text());
+    var size = parseInt($('#sel-size').find(":selected").text());
+		ChurnCharts.matrix(data, size, spacing)
 	}
 	$(document).ready(d3.json("/data/matrix.json", redraw));
 </script>

@@ -1,9 +1,21 @@
 <h1>File Churn</h1>
 
+<form method="get" action="#">
+  <span class="formlabel">bar width: </span>
+  <select id="sel-width" onclick="redraw()">
+    <% [1, 2, 3, 4, 6, 8, 10].each do |w| %>
+      <option value="<%= w %>" <%= (w==3) ? "selected" : "" %>><%= w %> px</option>
+    <% end %>
+  </select>
+</form>
+
 <script src="/histogram.js"></script>
 <script>
-	redraw = function(error, data) {
-		ChurnCharts.histogram(data)
+  var data;
+	redraw = function(error, newData) {
+    data = newData || data
+    var width = parseInt($('#sel-width').find(":selected").text());
+		ChurnCharts.histogram(data, width);
 	}
 	$(document).ready(d3.json("/data/histogram.json", redraw));
 </script>
