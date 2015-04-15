@@ -1,0 +1,11 @@
+<h1>Commit Timeline</h1>
+
+<script src="/timeline.js"></script>
+<script>
+	redraw = function(error, data) {
+		ChurnCharts.timeline(data)
+	}
+	$(document).ready(d3.json("/data/timeline.json", redraw));
+</script>
+  
+<div id="chart-wrapper">

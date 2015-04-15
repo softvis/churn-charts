@@ -1,0 +1,11 @@
+<h1>Commit Matrix</h1>
+
+<script src="/matrix.js"></script>
+<script>
+	redraw = function(error, data) {
+		ChurnCharts.matrix(data)
+	}
+	$(document).ready(d3.json("/data/matrix.json", redraw));
+</script>
+  
+<div id="chart-wrapper">
