@@ -16,7 +16,7 @@ module Helper
       else
         adds, deletes, filename = line.split(/\t/)
         
-        next if ! (filename =~ /(scala|rb|sh|json|java)(}*)$/)
+        next if ! (filename =~ /\.(scala|rb|sh|java)(}*)$/)
         next if filename =~ /lambda/
         next if filename =~ /generated/
 
@@ -111,7 +111,7 @@ module Helper
         adds, deletes, filename = line.split(/\t/)
         
         # next if ! (filename =~ /app/)
-        next if ! (filename =~ /(scala|rb|sh|json|java)(}*)$/)
+        next if ! (filename =~ /\.(scala|rb|sh|java)(}*)$/)
         next if filename =~ /lambda/
         next if filename =~ /generated/
 
@@ -146,7 +146,7 @@ module Helper
     data = []
     reverse_map.values.sort.combination(2).each do | pair|
       key = [id_map[pair[0]], id_map[pair[1]]].sort.join("*")
-      if (weight = cocommits[key]) != nil then
+      if (weight = cocommits[key]) != nil && weight > 2 then
         data << {
           :name0 => pair[0],
           :name1 => pair[1],

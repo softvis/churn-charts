@@ -3,7 +3,7 @@
 <form method="get" action="#">
   <span class="formlabel">spacing: </span>
   <select id="sel-spacing" onclick="redraw()">
-    <% [1, 2, 4, 6, 8, 10, 12, 16, 20, 30].each do |w| %>
+    <% [1, 2, 5, 8, 10, 12, 16, 20, 30].each do |w| %>
       <option value="<%= w %>" <%= (w==8) ? "selected" : "" %>><%= w %> px</option>
     <% end %>
   </select>

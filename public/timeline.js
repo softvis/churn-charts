@@ -5,7 +5,7 @@ ChurnCharts.timeline = function(data, SPACING) {
   var dateMax = d3.max(data, function(d) { return new Date(d.date)});
   var numFiles = d3.max(data, function(d) { return d.findex });
 
-  var BWIDTH = 8;
+  var BWIDTH = Math.min(SPACING * 2, 8)
   var MINWH = 3;
   var OVERSIZEH = 3;
   var PADDINGV = 4;

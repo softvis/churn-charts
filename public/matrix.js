@@ -23,7 +23,7 @@ ChurnCharts.matrix = function(data, size, spacing) {
 
 	var fscale = d3.scale.log()
 		.domain([1, d3.max(data, function(d) { return d.weight })])
-		.range(["#BDF", "#248"]);
+		.range(["#CEF", "#248"]);
 		
 	chart.selectAll("rect")
 		.data(data)
