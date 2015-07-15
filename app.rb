@@ -42,3 +42,6 @@ get '/chart/:name' do
   erb "no such chart #{params[:name]}", :locals => {:name => params[:name]}
 end
 
+get '/arg' do
+  ARGV[0]
+end

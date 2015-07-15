@@ -3,13 +3,13 @@
 <form method="get" action="#">
   <span class="formlabel">spacing: </span>
   <select id="sel-spacing" onclick="redraw()">
-    <% [1, 2, 3, 4, 6, 8, 10].each do |w| %>
-      <option value="<%= w %>" <%= (w==3) ? "selected" : "" %>><%= w %> px</option>
+    <% [1, 2, 3, 4, 5, 6, 8, 10].each do |w| %>
+      <option value="<%= w %>" <%= (w==4) ? "selected" : "" %>><%= w %> px</option>
     <% end %>
   </select>
   <span class="formlabel">size: </span>
   <select id="sel-size" onclick="redraw()">
-    <% [1, 2, 3, 4, 6, 8, 10].each do |w| %>
+    <% [1, 2, 3, 4, 5, 6, 8, 10].each do |w| %>
       <option value="<%= w %>" <%= (w==3) ? "selected" : "" %>><%= w %> px</option>
     <% end %>
   </select>

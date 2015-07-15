@@ -6,7 +6,7 @@ module Helper
   def read_log()
     filetable = {} 
  
-    log_output = File.open('gitlog.txt', 'rb') { |f| f.read }
+    log_output = File.open(ARGV[0] || 'gitlog.txt', 'rb') { |f| f.read }
     log_lines = log_output.each_line.reject{ |line| line == "\n" }.map(&:chomp)
 
     unixtime = nil
@@ -16,7 +16,7 @@ module Helper
       else
         adds, deletes, filename = line.split(/\t/)
         
-        next if ! (filename =~ /\.(scala|rb|sh|java)(}*)$/)
+        next if ! (filename =~ /\.(scala|rb|sh|java|js)(}*)$/)
         next if filename =~ /lambda/
         next if filename =~ /generated/
 
@@ -100,7 +100,7 @@ module Helper
     id_map = {}
     reverse_map = {} 
  
-    log_output = File.open('gitlog.txt', 'rb') { |f| f.read }
+    log_output = File.open(ARGV[0] || 'gitlog.txt', 'rb') { |f| f.read }
     log_lines = log_output.each_line.reject{ |line| line == "\n" }.map(&:chomp)
 
     group = []
@@ -111,7 +111,7 @@ module Helper
         adds, deletes, filename = line.split(/\t/)
         
         # next if ! (filename =~ /app/)
-        next if ! (filename =~ /\.(scala|rb|sh|java)(}*)$/)
+        next if ! (filename =~ /\.(scala|rb|sh|java|js)(}*)$/)
         next if filename =~ /lambda/
         next if filename =~ /generated/
 
