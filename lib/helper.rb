@@ -16,7 +16,7 @@ module Helper
       else
         adds, deletes, filename = line.split(/\t/)
         
-        next if ! (filename =~ /\.(scala|rb|sh|java|js)(}*)$/)
+        next if ! (filename =~ /\.(scala|rb|sh|java|js|clj)(}*)$/)
         next if filename =~ /lambda/
         next if filename =~ /generated/
 
@@ -111,7 +111,7 @@ module Helper
         adds, deletes, filename = line.split(/\t/)
         
         # next if ! (filename =~ /app/)
-        next if ! (filename =~ /\.(scala|rb|sh|java|js)(}*)$/)
+        next if ! (filename =~ /\.(scala|rb|sh|java|js|clj)(}*)$/)
         next if filename =~ /lambda/
         next if filename =~ /generated/
 
@@ -151,8 +151,8 @@ module Helper
           :name0 => pair[0],
           :name1 => pair[1],
           :index0 => index_map[pair[0]],
-          :index1 => index_map[pair[1]],
-          :weight => weight
+          :index1 => index_map[pair[1]]
+          :weight => weight,
         }
       end
     end  
