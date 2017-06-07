@@ -25,6 +25,17 @@ The colour of the bar changes from blue to red based on how much churn, in terms
 Michael Feathers describes this chart in his article [Getting Empirical about Refactoring](http://www.stickyminds.com/article/getting-empirical-about-refactoring)
 
 
+## Matrix
+
+![Churn matrix](docs/example-matrix.png)
+
+Matrix view that shows which files are commited together frequently.
+
+Each square in the diagram represents a pair of files. The colour of the square gets darker the more often the corresponding files are found together in a commit. If two files are never found together in a commit or if there is only one commit in which the two files are found together, no square is drawn.
+
+Information about the files is available by hovering over the squares. The weight is currently simple the count of commits in which the two files are found together.
+
+
 ## Running the visualisations
 
 Create the Git log as follows and copy the `gitlog.txt` file into the root directory of this app. The file is in `.gitignore` already.
