@@ -33,7 +33,7 @@ Matrix view that shows which files are commited together frequently.
 
 Each square in the diagram represents a pair of files. The colour of the square gets darker the more often the corresponding files are found together in a commit. If two files are never found together in a commit or if there is only one commit in which the two files are found together, no square is drawn.
 
-Information about the files is available by hovering over the squares. The weight is currently simple the count of commits in which the two files are found together.
+Information about the files is available by hovering over the squares. The weight is currently simply the count of commits in which the two files are found together.
 
 
 ## Running the visualisations
