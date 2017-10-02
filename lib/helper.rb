@@ -16,7 +16,7 @@ module Helper
       else
         adds, deletes, filename = line.split(/\t/)
         
-        next if ! (filename =~ /\.(scala|rb|sh|java|js|clj)(}*)$/)
+        next if ! (filename =~ /\.(scala|rb|sh|java|js|jsx|ts|clj)(}*)$/)
         next if filename =~ /lambda/
         next if filename =~ /generated/
 
@@ -111,7 +111,7 @@ module Helper
         adds, deletes, filename = line.split(/\t/)
         
         # next if ! (filename =~ /app/)
-        next if ! (filename =~ /\.(scala|rb|sh|java|js|clj)(}*)$/)
+        next if ! (filename =~ /\.(scala|rb|sh|java|js|jsx|ts|clj)(}*)$/)
         next if filename =~ /lambda/
         next if filename =~ /generated/
 
