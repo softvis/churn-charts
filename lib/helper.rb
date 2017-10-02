@@ -151,8 +151,8 @@ module Helper
           :name0 => pair[0],
           :name1 => pair[1],
           :index0 => index_map[pair[0]],
-          :index1 => index_map[pair[1]]
-          :weight => weight,
+          :index1 => index_map[pair[1]],
+          :weight => weight
         }
       end
     end  
